@@ -1,3 +1,69 @@
-body{
-	background-image: url("/assets/images/Map.jpg");
+#container{
+	position: absolute;
+	background-image: url("../images/Map.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 98%;
+	height: 95%;
+	border: 2px solid;
+}
+#topCard{
+	position: absolute;
+	background-image: url("../images/Title.png") ;
+	background-repeat: no-repeat;
+	background-size: cover;
+	top:-80px;
+	left: 35%;
+	width: 350px;
+	height: 350px;
+}
+#playZone{
+	position: absolute;
+	background-image: url("../images/frame.jpg") ;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 550px;
+	height: 423px;
+	left: 30%;
+	top: 20%;
+	border: 2px solid;
+}
+#startButton{
+	position: absolute;
+	bottom: 7%;
+	left: 45%;
+}
+.start{
+	color: brown;
+	font-size: 22px;
+	background-color: aliceblue;
+	border: 2px solid black;
+}
+#question{
+	position: absolute;
+	padding:30px;
+	text-align: left;
+	top: 30px;
+	font-size: 20px;
+	left: 8%
+}
+#answer{
+	position: absolute;
+	left: 8%;
+	top: 10%;
+}
+.answer{
+	position: relative;
+	left: 8%;
+	top: 150px;
+	width: 21%;
+	height: 120px;
+}
+#score{
+	position: absolute;
+	left: 9%;
+	top: 20%;
+	width: 95%;
+	height: 50px;
+	font-size: 28px;
 }

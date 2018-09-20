@@ -1,7 +1,8 @@
 var correct = 0;
 var wrong = 0;
-var unawnsered = 0;
+var unanswered = 0;
 var i = 0;
+var timer;
 
 var questions = [
 	{question : "A Gold Dragonborn is Resistant to What Type of Damage?",
@@ -41,62 +42,84 @@ var questions = [
 ]
 
 function checkMe(){
-	if(this.attr == questions[i].awnswer){
-		correct++;
-	}
+	var thing = $(this).attr("awnsers");
+	if(thing == questions[i].awnswer){
+		correct++;}
 	else{
-		wrong++;
-	}
+		wrong++;}
 	$("#awnsers").empty();
 	$("#question").empty();
 	i++;
 
 	if(i >= 5){
-		startScreen()
-	}
+		i = 0;
+		$("#score").append("Correct: "+correct+" // Wrong: "+wrong+" // Unanswered: "+unanswered);
+		correct = 0;
+		wrong = 0;
+		unanswered = 0;
+		startScreen();}
 	else{
-		nextQuestion();
-	}
+		nextQuestion();}
 }
 
 function nextQuestion(){
 
-	$("startButton").empty();
-	var timer = setTimeout(function() {
-		unawnsered++;
+	clearTimeout(timer);
+
+	$("#score").empty();
+	$("#startButton").empty();
+
+	timer = setTimeout(function() {
+		unanswered++;
 		i++;
-		nextQuestion();
-	}, 20000);
+		$("#awnsers").empty();
+		$("#question").empty();
+
+		if(i >= 5){
+			i = 0;
+			$("#score").append("Correct: "+correct+" // Wrong: "+wrong+" // Unanswered: "+unanswered);
+			correct = 0;
+			wrong = 0;
+			unanswered = 0;
+			startScreen();}
+		else{nextQuestion();}
+	},10000);
 
 	$("#question").append(questions[i].question)
 
-	var btn = $("<button>");
-	btn.addClass("answer");
-	btn.text(questions[i].option1);
-	btn.attr(questions[i].option1);
-	$("#awnsers").append(btn);
+	var btn1 = $("<button>");
+	btn1.addClass("answer");
+	btn1.text(questions[i].option1);
+	btn1.attr("awnsers", questions[i].option1);
+	$("#awnsers").append(btn1);
 
-	btn.text(questions[i].option2);
-	btn.attr(questions[i].option2);
-	$("#awnsers").append(btn);
+	var btn2 = $("<button>");
+	btn2.addClass("answer");
+	btn2.text(questions[i].option2);
+	btn2.attr("awnsers", questions[i].option2);
+	$("#awnsers").append(btn2);
 
-	btn.text(questions[i].option3);
-	btn.attr(questions[i].option3);
-	$("#awnsers").append(btn);
+	var btn3 = $("<button>");
+	btn3.addClass("answer");
+	btn3.text(questions[i].option3);
+	btn3.attr("awnsers", questions[i].option3);
+	$("#awnsers").append(btn3);
 
-	btn.text(questions[i].option4);
-	btn.attr(questions[i].option4);
-	$("#awnsers").append(btn);
+	var btn4 = $("<button>");
+	btn4.addClass("answer");
+	btn4.text(questions[i].option4);
+	btn4.attr("awnsers", questions[i].option4);
+	$("#awnsers").append(btn4);
 }
 
 function startScreen(){
+	clearTimeout(timer);
 	$("#awnsers").empty();
 	$("#question").empty();
-	$("#timer").empty();
 	var btn = $("<button>");
 	btn.addClass("start");
 	btn.text("Start");
-	$("startButton").append(btn)
+	$("#startButton").append(btn)
 }
 //LISTEN TO MY BUTTONS
 $(document).on("click", ".start", nextQuestion);
